@@ -8,7 +8,7 @@
   justifyContent: 'center',
   width: '100%',
   height: '100%',
-  background: '#201f1f',
+  background: '#0d1117',
   borderRadius: 20,
   overflow: 'hidden',
   fontFamily: 'Inter, sans-serif'
