@@ -8,7 +8,7 @@
   justifyContent: 'center',
   width: '100%',
   height: '100%',
-  background: '#150803',
+  background: '#201f1f',
   borderRadius: 20,
   overflow: 'hidden',
   fontFamily: 'Inter, sans-serif'
@@ -180,9 +180,10 @@
           style={{
             padding: '7px 18px',
             background: 'rgba(255,255,255,0.05)',
-            color: 'rgba(255,255,255,0.9)',
+            color: 'rgba(255,255,255,1)',
             borderRadius: 100,
             fontSize: 12,
+            fontWeight: '600', 
             border: '1px solid rgba(255,120,40,0.2)',
             letterSpacing: 0.5,
             textShadow: '0 0 8px rgba(255,255,255,0.2)'
