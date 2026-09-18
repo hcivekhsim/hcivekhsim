@@ -1,4 +1,4 @@
-```aura width=800 height=250
+```aura width=800 height=250 inline align=center
 
 <div style={{
   position: 'relative',
@@ -8,7 +8,7 @@
   justifyContent: 'center',
   width: '100%',
   height: '100%',
-  background: '#08080d',
+  background: '#150803',
   borderRadius: 20,
   overflow: 'hidden',
   fontFamily: 'Inter, sans-serif'
@@ -130,7 +130,7 @@
     flexDirection: 'column',
     alignItems: 'center',
     gap: 12,
-    zIndex: 10
+    zIndex: 10,
   }}>
 
     <div style={{
