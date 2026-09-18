@@ -1,4 +1,4 @@
-```aura width=650 height=250
+```aura width=800 height=250
 
 <div style={{
   position: 'relative',
