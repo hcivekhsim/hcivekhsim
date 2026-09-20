@@ -8,7 +8,7 @@
   justifyContent: 'center',
   width: '100%',
   height: '100%',
-  background: '#0d1117',
+  background: '#282828',
   borderRadius: 20,
   overflow: 'hidden',
   fontFamily: 'Inter, sans-serif'
@@ -198,3 +198,4 @@
   </div>
 
 </div>
+
