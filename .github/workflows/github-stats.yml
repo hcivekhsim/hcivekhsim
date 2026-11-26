@@ -44,7 +44,7 @@ jobs:
       - name: Generate SVG
         working-directory: tool
         env:
-          GHT: ${{ secrets.GHT }}
+          GHT: ${{ secrets.GHT || secrets.GITHUB_TOKEN }}
         run: |
           npm install
           npx ts-node bin/github-stats-terminal.ts --user hcivekhsim
