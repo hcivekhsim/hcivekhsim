@@ -11,27 +11,54 @@ permissions:
 jobs:
   build-stats:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout my repository
+        uses: actions/checkout@v4
+
+      - name: Checkout generator
         uses: actions/checkout@v4
         with:
-          persist-credentials: true
-          fetch-depth: 0
+          repository: yogeshwaran01/github-stats-terminal-style
+          path: tool
 
-      - name: Generate SVG Terminal Stats Card
-        uses: yogeshwaran01/github-stats-terminal-style@master
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          username: hcivekhsim
-          theme: monokai
-          headerStyle: mac
-          typingSpeed: 80
-          hostname: github.com
-          commands: neofetch,languages,uptime,exit
-          outputPath: assets/github_stats.svg
+          node-version: 20
 
-      - name: Commit and Push Changes
+      - name: Write config
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          cat > tool/.github-stats-config.json << 'EOF'
+          {
+            "sourceType": "user",
+            "target": "hcivekhsim",
+            "theme": "monokai",
+            "headerStyle": "windows",
+            "hostname": "github.com",
+            "typingSpeed": 80,
+            "commands": ["neofetch", "languages", "uptime", "exit"]
+          }
+          EOF
+
+      - name: Generate SVG
+        working-directory: tool
+        env:
+          GHT: ${{ secrets.GHT }}
+        run: |
+          npm install
+          npx ts-node bin/github-stats-terminal.ts --user hcivekhsim
+
+      - name: Move SVG to assets
+        run: |
+          mkdir -p assets
+          SVG=$(find tool -maxdepth 2 -name "github_stats.svg" | head -n 1)
+          echo "Found: $SVG"
+          cp "$SVG" assets/github_stats.svg
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add assets/github_stats.svg
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update terminal stats card [skip ci]" && git push)
+          git diff --staged --quiet || (git commit -m "chore: update terminal stats card [skip ci]" && git push)
