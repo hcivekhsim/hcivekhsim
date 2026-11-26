@@ -33,7 +33,7 @@ jobs:
           {
             "sourceType": "user",
             "target": "hcivekhsim",
-            "theme": "github",
+            "theme": "gruvbox",
             "headerStyle": "mac",
             "hostname": "github.com",
             "typingSpeed": 80,
